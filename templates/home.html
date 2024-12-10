@@ -102,32 +102,99 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    <!-- <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/files/service-worker.js')
             .then(() => console.log('Service Worker Registered'));
         }
-    </script>
+    </script> -->
     <script>
         let pharmacies = [];
 
-        fetch('/farmacias')
-        .then((response) => {
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
+        async function fetchPharmacyData() {
+            try {
+                const corsProxy = 'https://cors-anywhere.herokuapp.com/'; // CORS proxy to handle cross-origin requests
+                // const url = `${corsProxy}https://www.colfarmalp.org.ar/turnos-la-plata`;
+                const url = `https://www.colfarmalp.org.ar/turnos-la-plata`;
+                
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const htmlText = await response.text();
+                
+                // Create a temporary div to parse HTML (equivalent to BeautifulSoup)
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                
+                const listadoFarmacias = doc.querySelector('.turnos').querySelectorAll('.tr');
+                
+                if (!listadoFarmacias || listadoFarmacias.length === 0) {
+                    throw new Error("No pharmacy list found in the response.");
+                }
+                
+                const infoFarmacias = [];
+
+                // Skip the first row (header) by starting from index 1
+                for (let f of Array.from(listadoFarmacias).slice(1)) {
+                    const data = {
+                        nombre: "",
+                        direccion: "",
+                        telefono: "",
+                        zona: "",
+                        geo: {
+                            lat: "",
+                            long: ""
+                        },
+                        osde: {}
+                    };
+
+                    const cells = f.querySelectorAll('.td');
+                    
+                    // Clean text function to match Python's text cleaning
+                    const cleanText = (text) => text.replace(/\n/g, '').replace(/\t/g, '').trim();
+                    
+                    data.nombre = cleanText(cells[0].textContent).replace(/\b\w/g, l => l.toUpperCase());
+                    data.direccion = cleanText(cells[1].textContent).replace('Dirección', '');
+                    data.zona = cleanText(cells[2].textContent).replace('Zona', '');
+                    data.telefono = cleanText(cells[3].textContent).replace('Teléfono', '');
+                    
+                    // Handle geolocation
+                    const geoLink = cells[4].querySelector('a');
+                    if (geoLink && geoLink.href) {
+                        const [lat, long] = geoLink.href.split('destination=')[1].split(',');
+                        
+                        if (lat === '0' && long === '0') {
+                            data.geo.lat = "-34.920494";
+                            data.geo.long = "-57.953568";
+                        } else {
+                            data.geo.lat = lat;
+                            data.geo.long = long;
+                        }
+                    }
+
+                    infoFarmacias.push(data);
+                }
+
+                return infoFarmacias;
+
+            } catch (error) {
+                console.error("Error fetching or processing data:", error);
+                return [];
             }
-            return response.json();
-        })
+        }
+
+        fetchPharmacyData()   
         .then((data) => {
-            pharmacies = data.pharmacies; 
+            pharmacies = data; 
 
             const loadingOverlay = document.getElementById('loadingOverlay');
             const map = L.map('map');
 
-            // OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-            // Function to calculate distance between two points
             function calculateDistance(lat1, lon1, lat2, lon2) {
                 const R = 6371; // Radius of the Earth in km
                 const dLat = (lat2 - lat1) * Math.PI / 180;

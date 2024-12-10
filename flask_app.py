@@ -105,19 +105,14 @@ def create_app():
 
     def fetch_pharmacy_data():
         try:
-            # Perform a GET request to the URL
             url = "https://www.colfarmalp.org.ar/turnos-la-plata"
             response = requests.get(url)
             
-            # Check if the response is successful
             if response.status_code != 200:
                 raise Exception(f"HTTP error! status: {response.status_code}")
             
-            # Parse the HTML response using BeautifulSoup
             soup = BeautifulSoup(response.text, 'html.parser')
 
-
-            # Select the list of pharmacies
             listado_farmacias = soup.select_one(".turnos").select(".tr")
             
             if not listado_farmacias:
@@ -125,8 +120,7 @@ def create_app():
             
             info_farmacias = []
 
-            # Iterate through the pharmacies and extract the required information
-            for f in listado_farmacias[1:]:  # Skip the first row (header)
+            for f in listado_farmacias[1:]:  
                 data = {
                     "nombre": "",
                     "direccion": "",
@@ -138,14 +132,12 @@ def create_app():
                     }
                 }
 
-                # Extract and clean data from the columns
                 cells = f.select(".td")
                 data["nombre"] = cells[0].get_text().replace("\n", "").replace("\t", "").title().strip()
                 data["direccion"] = cells[1].get_text().replace("\n", "").replace("\t", "").replace("Dirección","").strip()
                 data["zona"] = cells[2].get_text().replace("\n", "").replace("\t", "").replace("Zona","").strip()
                 data["telefono"] = cells[3].get_text().replace("\n", "").replace("\t", "").replace("Teléfono", "").strip()
                 data["osde"] = {}
-                # Extract geo data from the href
                 geo_link = cells[4].find("a")["href"] if cells[4].find("a") else None
                 if geo_link:
                     lat, long = geo_link.split("destination=")[1].split(",")
