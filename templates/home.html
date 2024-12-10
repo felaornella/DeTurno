@@ -104,32 +104,32 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // if ('serviceWorker' in navigator) {
-        //     navigator.serviceWorker.register('/files/service-worker.js')
-        //     .then(() => console.log('Service Worker Registered'));
-        // }
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations()
-                .then(registrations => {
-                    if (registrations.length === 0) {
-                        console.log('No service workers registered.');
-                    } else {
-                        registrations.forEach(registration => {
-                            registration.unregister()
-                                .then(success => {
-                                    if (success) {
-                                        console.log('Service worker unregistered:', registration);
-                                    } else {
-                                        console.log('Failed to unregister service worker:', registration);
-                                    }
-                                });
-                        });
-                    }
-                })
-                .catch(error => console.error('Error fetching service worker registrations:', error));
-        } else {
-            console.log('Service workers are not supported in this browser.');
+            navigator.serviceWorker.register('/files/service-worker.js')
+            .then(() => console.log('Service Worker Registered'));
         }
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.getRegistrations()
+        //         .then(registrations => {
+        //             if (registrations.length === 0) {
+        //                 console.log('No service workers registered.');
+        //             } else {
+        //                 registrations.forEach(registration => {
+        //                     registration.unregister()
+        //                         .then(success => {
+        //                             if (success) {
+        //                                 console.log('Service worker unregistered:', registration);
+        //                             } else {
+        //                                 console.log('Failed to unregister service worker:', registration);
+        //                             }
+        //                         });
+        //                 });
+        //             }
+        //         })
+        //         .catch(error => console.error('Error fetching service worker registrations:', error));
+        // } else {
+        //     console.log('Service workers are not supported in this browser.');
+        // }
     </script>
 
     <script>
@@ -167,7 +167,7 @@
         });
 
         // Initial map view
-        map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 15);
+        map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 10);
 
         // Get user's location
         navigator.geolocation.getCurrentPosition(
@@ -279,8 +279,8 @@
 
                 // Adjust map view to show user marker and 3 closest markers
                 // const group = new L.featureGroup([userMarker, ...closestMarkers]);
-                const group = new L.featureGroup([userMarker, ...closestMarkers]);
-                map.fitBounds(group.getBounds(), {padding: [50, 50]});
+                const group = new L.featureGroup([nearestPharmacy.marker]);
+                map.fitBounds(group.getBounds(), {padding: [150, 150], maxZoom: 15});
                 setTimeout(()=>{
                     loadingOverlay.style.display = 'none'
                 }, 1000)
@@ -288,7 +288,7 @@
             (error) => {
                 console.error("Error getting location", error);
                 // Fallback to first pharmacy location if geolocation fails
-                map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 15);
+                map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 10);
                 setTimeout(()=>{
                     loadingOverlay.style.display = 'none'
                 }, 1000)
