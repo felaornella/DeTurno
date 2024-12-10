@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pharmacy Locations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="manifest" href="/files/manifest.json">
+    <link rel="shortcut icon" href="/files/favicon.ico">
+
+    <style>
+        #listContainerDesktop{
+            display: inherit;
+        }
+        #listContainerMobile{
+            display: none;
+        }
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            #listContainerDesktop{
+                display: none;
+            }
+            #listContainerMobile{
+                display: inherit;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col text-start">
+                <h3>
+                    <span style="color: var(--bs-primary);">
+                        Farmacias de Turno
+                    </span>
+                </h3>
+            </div>
+            <div class="col text-end">
+                <div class="btn-group" role="group">
+                    <button id="mapViewBtn" class="btn btn-primary active">Mapa</button>
+                    <button id="listViewBtn" class="btn btn-outline-primary">Listado</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mapContainer" class="row">
+            <div id="map" class="col" style="height: 85vh;"></div>
+        </div>
+
+        <div id="listContainerDesktop" class="row d-none">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Direccion</th>
+                                    <th>Telefono</th>
+                                    <th>Zona</th>
+                                    <th>Distancia</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- {% for pharmacy in pharmacies %}
+                                <tr>
+                                    <td>{{ pharmacy.nombre }}</td>
+                                    <td>{{ pharmacy.direccion }}</td>
+                                    <td>{{ pharmacy.telefono }}</td>
+                                    <td>{{ pharmacy.zona }}</td>
+                                    <td>
+                                        <a href="https://www.google.com/maps/dir/?api=1&destination={{pharmacy.geo.lat}},{{pharmacy.geo.long}}" class="btn btn-primary">¿Comor ir?</a>
+                                    </td>
+                                </tr>
+                                {% endfor %} -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="listContainerMobile" class="row d-none">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body" id="pharmacyListBody">
+                        <!-- Pharmacies will be dynamically populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker Registered'));
+        }
+    </script>
+    <script>
+        const pharmacies = {{ pharmacies | tojson }};
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const map = L.map('map');
+
+        // OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Function to calculate distance between two points
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // Markers and nearest pharmacy tracking
+        let markers = [];
+        let nearestPharmacy = null;
+        let userMarker = null;
+
+        // Create markers for pharmacies
+        pharmacies.forEach((pharmacy, index) => {
+            const marker = L.marker([pharmacy.geo.lat, pharmacy.geo.long])
+                .addTo(map);
+            markers.push({marker, pharmacy});
+        });
+
+        // Initial map view
+        map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 15);
+
+        // Get user's location
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLon = position.coords.longitude;
+
+                // Add user marker
+                userMarker = L.marker([userLat, userLon], {
+                    icon: L.divIcon({
+                        className: 'custom-div-icon',
+                        html: '<div style="background-color:blue;width:15px;height:15px;border-radius:50%;"></div>',
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15]
+                    })
+                }).addTo(map);
+
+                // Calculate distances and sort markers by proximity
+                const sortedMarkers = markers.map(({marker, pharmacy}) => {
+                    const distance = calculateDistance(userLat, userLon, pharmacy.geo.lat, pharmacy.geo.long);
+                    return {marker, pharmacy, distance};
+                }).sort((a, b) => a.distance - b.distance);
+
+                for (s in sortedMarkers){
+                    item = sortedMarkers[s]
+                    item.marker.bindPopup(`
+                        <div class="text-center">
+                            <h5 class="m-0"><b>${item.pharmacy.nombre}</b></h5>
+                            <h6 class="m-0 mb-2">${item.pharmacy.direccion}</h6>
+                            <h6 class="m-0 mb-2">${item.pharmacy.telefono}</h6>
+                            <h6> A ${item.distance.toFixed(2)} km</h6>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${item.pharmacy.geo.lat},${item.pharmacy.geo.long}" 
+                               style="color:white"
+                               target="_blank" 
+                               class="btn btn-primary btn-sm mt-2">
+                                ¿Cómo ir?
+                            </a>
+                        </div>
+                    `)
+                }
+
+
+                // Get the 3 closest markers
+                const closestMarkers = sortedMarkers.slice(0, 3).map(m => m.marker);
+
+                // Highlight the nearest pharmacy
+                const nearestPharmacy = sortedMarkers[0];
+
+                // Highlight nearest pharmacy
+                if (nearestPharmacy) {
+                    // Modify popup to include "LA MÁS CERCANA"
+                    nearestPharmacy.marker.bindPopup(`
+                        <div class="text-center">
+                            <h6 class="m-0"><span class="badge bg-danger mb-2">LA MÁS CERCANA</span></h6>
+                            <h5 class="m-0 mb-2"><b>${nearestPharmacy.pharmacy.nombre}</b></h5>
+                            <h6 class="m-0 mb-2">${nearestPharmacy.pharmacy.direccion}</h6>
+                            <h6>A ${nearestPharmacy.distance.toFixed(2)} km</h6>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${nearestPharmacy.pharmacy.geo.lat},${nearestPharmacy.pharmacy.geo.long}" 
+                               target="_blank" 
+                               style="color:white"
+                               class="btn btn-primary btn-sm mt-2">
+                                ¿Cómo ir?
+                            </a>
+                        </div>
+                    `);
+
+                    // Open popup for nearest pharmacy
+                    nearestPharmacy.marker.openPopup();
+                }
+
+                const listBody = document.getElementById('pharmacyListBody');
+                listBody.innerHTML = sortedMarkers.map((item, index) => `
+                    <div class="card mb-2 ${index === 0 ? 'border-primary' : ''}">
+                        <div class="card-body position-relative">
+                            <h5 class="card-title">
+                                ${item.pharmacy.nombre}
+                                ${index === 0 ? '<span class="badge bg-danger " style="font-size:.8rem">LA MÁS CERCANA</span>' : ''}
+                            </h5>
+                            <p class="card-text">
+                                <b>${item.pharmacy.direccion}</b>
+                            </p>
+                            <p class="card-text">
+                                ${item.pharmacy.telefono}<br>
+                                A ${item.distance.toFixed(2)} km
+                            </p>
+                            <a style="width:100%" href="https://www.google.com/maps/dir/?api=1&destination=${item.pharmacy.geo.lat},${item.pharmacy.geo.long}" 
+                               target="_blank" 
+                               class="btn btn-primary btn-sm text-white">
+                                ¿Cómo ir?
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = sortedMarkers.map((item, index) => `
+                    <tr>
+                        <td>${item.pharmacy.nombre} ${index === 0 ? '<span class="badge bg-danger ">LA MÁS CERCANA</span>' : ''}</td>
+                        <td>${item.pharmacy.direccion}</td>
+                        <td>${item.pharmacy.telefono}</td>
+                        <td>${item.pharmacy.zona}</td>
+                        <td>${item.distance.toFixed(2)} km</td>
+                        <td>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${item.pharmacy.geo.lat},${item.pharmacy.geo.long}" class="btn btn-primary">¿Comor ir?</a>
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Adjust map view to show user marker and 3 closest markers
+                const group = new L.featureGroup([userMarker, ...closestMarkers]);
+                map.fitBounds(group.getBounds(), {padding: [50, 50]});
+                setTimeout(()=>{
+                    loadingOverlay.style.display = 'none'
+                }, 1000)
+            },
+            (error) => {
+                console.error("Error getting location", error);
+                // Fallback to first pharmacy location if geolocation fails
+                map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 15);
+                setTimeout(()=>{
+                    loadingOverlay.style.display = 'none'
+                }, 1000)
+            }
+        );
+
+        // Existing view toggle code remains the same as in previous version
+        document.getElementById('mapViewBtn').addEventListener('click', () => {
+            document.getElementById('mapContainer').classList.remove('d-none');
+            document.getElementById('listContainerDesktop').classList.add('d-none');
+            document.getElementById('listContainerMobile').classList.add('d-none');
+            document.getElementById('mapViewBtn').classList.add('active');
+            document.getElementById('listViewBtn').classList.remove('active');
+            document.getElementById('mapViewBtn').classList.remove('btn-outline-primary');
+            document.getElementById('mapViewBtn').classList.add('btn-primary');
+            document.getElementById('listViewBtn').classList.remove('btn-primary');
+            document.getElementById('listViewBtn').classList.add('btn-outline-primary');
+        });
+
+        document.getElementById('listViewBtn').addEventListener('click', () => {
+            document.getElementById('mapContainer').classList.add('d-none');
+            document.getElementById('listContainerDesktop').classList.remove('d-none');
+            document.getElementById('listContainerMobile').classList.remove('d-none');
+            document.getElementById('mapViewBtn').classList.remove('active');
+            document.getElementById('listViewBtn').classList.add('active');
+            document.getElementById('mapViewBtn').classList.remove('btn-primary');
+            document.getElementById('mapViewBtn').classList.add('btn-outline-primary');
+            document.getElementById('listViewBtn').classList.remove('btn-outline-primary');
+            document.getElementById('listViewBtn').classList.add('btn-primary');
+        });
+    </script>
+    <style>
+        .green-marker img {
+            border: 3px solid green;
+            border-radius: 50%;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "DeTurno",
+    "short_name": "DeTurno",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fafafa",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "/files/logo-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/files/logo-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  
