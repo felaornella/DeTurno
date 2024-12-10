@@ -48,8 +48,8 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <div class="container mt-4">
-        <div class="row mb-3">
+    <div class="container mt-3">
+        <div class="row mb-2">
             <div class="col text-start">
                 <h4>
                     <span style="color: var(--bs-primary);">
@@ -57,8 +57,10 @@
                     </span>
                 </h4>
             </div>
-            <div class="col text-end">
-                <div class="btn-group" role="group">
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="btn-group" role="group" style="width:100%">
                     <button id="mapViewBtn" class="btn btn-primary active">Mapa</button>
                     <button id="listViewBtn" class="btn btn-outline-primary">Listado</button>
                 </div>
@@ -100,6 +102,10 @@
                 </div>
             </div>
         </div>
+
+        <div style="width: 100%;text-align: center;">
+            <button class="btn btn-secondary mt-4 mb-4" id="buttonInstall" style="opacity: 0.5;cursor: not-allowed;padding-inline: 4rem;" disabled="">Instalar App</button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -108,33 +114,70 @@
             navigator.serviceWorker.register('/files/service-worker.js')
             .then(() => console.log('Service Worker Registered'));
         }
-        // if ('serviceWorker' in navigator) {
-        //     navigator.serviceWorker.getRegistrations()
-        //         .then(registrations => {
-        //             if (registrations.length === 0) {
-        //                 console.log('No service workers registered.');
-        //             } else {
-        //                 registrations.forEach(registration => {
-        //                     registration.unregister()
-        //                         .then(success => {
-        //                             if (success) {
-        //                                 console.log('Service worker unregistered:', registration);
-        //                             } else {
-        //                                 console.log('Failed to unregister service worker:', registration);
-        //                             }
-        //                         });
-        //                 });
-        //             }
-        //         })
-        //         .catch(error => console.error('Error fetching service worker registrations:', error));
-        // } else {
-        //     console.log('Service workers are not supported in this browser.');
-        // }
+    </script>
+    <script>
+        let deferredPrompt;
+
+        // Listen for the beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the default browser install prompt
+            // e.preventDefault();
+
+            // Store the event for later use
+            deferredPrompt = e;
+
+            // Enable the install button if the app can be installed
+            const installButton = document.getElementById('buttonInstall');
+            installButton.style.opacity = 1;
+            installButton.style.cursor = 'pointer';
+            installButton.removeAttribute('disabled');
+        });
+
+        // Function to trigger the install prompt
+        async function triggerInstall() {
+            if (!deferredPrompt) return;
+
+            // Show the install prompt
+            await deferredPrompt.prompt();
+
+            // Wait for the user to respond to the prompt
+            const { outcome } = await deferredPrompt.userChoice;
+
+            // Clear the saved prompt
+            deferredPrompt = null;
+
+            // Optional: Log the user's choice
+            console.log(`User ${outcome === 'accepted' ? 'accepted' : 'dismissed'} the install prompt`);
+
+            // Disable the install button after installation
+            const installButton = document.getElementById('buttonInstall');
+            installButton.style.opacity = 0.5;
+            installButton.style.cursor = 'not-allowed';
+            installButton.setAttribute('disabled', 'true');
+        }
+
+        // Listen for the appinstalled event to know when the app is installed
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('App installed successfully');
+        });
+
+        // Check if the app is already installed and disable the button
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            const installButton = document.getElementById('buttonInstall');
+            installButton.style.opacity = 0.5;
+            installButton.style.cursor = 'not-allowed';
+            installButton.setAttribute('disabled', 'true');
+        }
+
+        // Attach the triggerInstall function to the install button
+        const installButton = document.getElementById('buttonInstall');
+        installButton.addEventListener('click', triggerInstall);
+
     </script>
 
     <script>
         let pharmacies = {{pharmacies | tojson}};
-        console.log(pharmacies)
+
         const loadingOverlay = document.getElementById('loadingOverlay');
         const map = L.map('map');
 
