@@ -186,15 +186,19 @@
             }
         }
 
-        fetchPharmacyData()   
+        // fetchPharmacyData()   
+        fetch('/farmacias')
         .then((data) => {
-            pharmacies = data; 
+            // pharmacies = data; 
+            pharmacies = data.pharmacies; 
 
             const loadingOverlay = document.getElementById('loadingOverlay');
             const map = L.map('map');
 
+            // OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
+            // Function to calculate distance between two points
             function calculateDistance(lat1, lon1, lat2, lon2) {
                 const R = 6371; // Radius of the Earth in km
                 const dLat = (lat2 - lat1) * Math.PI / 180;
