@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import traceback
 
 def create_app():
-    app = Flask(__name__) 
+    app = Flask(__name__)
 
 
     def haversine(lat1, lon1, lat2, lon2):
@@ -35,7 +35,7 @@ def create_app():
 
         try:
             geos["210"] = [
-                {"lat": l.split(",")[0], "long": l.split(",")[1]} 
+                {"lat": l.split(",")[0], "long": l.split(",")[1]}
                 for l in list(
                     set(
                         [f"{g['ubicacion']['lat']},{g['ubicacion']['lon']}" for f in response_210.json()["prestadores"] for g in f["direccion_Prestacion"]]
@@ -49,7 +49,7 @@ def create_app():
 
         try:
             geos["310"] = [
-                {"lat": l.split(",")[0], "long": l.split(",")[1]} 
+                {"lat": l.split(",")[0], "long": l.split(",")[1]}
                 for l in list(
                     set(
                         [f"{g['ubicacion']['lat']},{g['ubicacion']['lon']}" for f in response_310.json()["prestadores"] for g in f["direccion_Prestacion"]]
@@ -62,7 +62,7 @@ def create_app():
 
         try:
             geos["410"] = [
-                {"lat": l.split(",")[0], "long": l.split(",")[1]} 
+                {"lat": l.split(",")[0], "long": l.split(",")[1]}
                 for l in list(
                     set(
                         [f"{g['ubicacion']['lat']},{g['ubicacion']['lon']}" for f in response_410.json()["prestadores"] for g in f["direccion_Prestacion"]]
@@ -75,7 +75,7 @@ def create_app():
 
         try:
             geos["450"] = [
-                {"lat": l.split(",")[0], "long": l.split(",")[1]} 
+                {"lat": l.split(",")[0], "long": l.split(",")[1]}
                 for l in list(
                     set(
                         [f"{g['ubicacion']['lat']},{g['ubicacion']['lon']}" for f in response_450.json()["prestadores"] for g in f["direccion_Prestacion"]]
@@ -88,7 +88,7 @@ def create_app():
 
         try:
             geos["510"] = [
-                {"lat": l.split(",")[0], "long": l.split(",")[1]} 
+                {"lat": l.split(",")[0], "long": l.split(",")[1]}
                 for l in list(
                     set(
                         [f"{g['ubicacion']['lat']},{g['ubicacion']['lon']}" for f in response_510.json()["prestadores"] for g in f["direccion_Prestacion"]]
@@ -107,20 +107,20 @@ def create_app():
         try:
             url = "https://www.colfarmalp.org.ar/turnos-la-plata"
             response = requests.get(url)
-            
+
             if response.status_code != 200:
                 raise Exception(f"HTTP error! status: {response.status_code}")
-            
+
             soup = BeautifulSoup(response.text, 'html.parser')
 
             listado_farmacias = soup.select_one(".turnos").select(".tr")
-            
+
             if not listado_farmacias:
                 raise Exception("No pharmacy list found in the response.")
-            
+
             info_farmacias = []
 
-            for f in listado_farmacias[1:]:  
+            for f in listado_farmacias[1:]:
                 data = {
                     "nombre": "",
                     "direccion": "",
@@ -159,20 +159,20 @@ def create_app():
 
                 info_farmacias.append(data)
 
-            return jsonify(pharmacies = info_farmacias)
+            return info_farmacias
 
         except Exception as e:
             traceback.print_exc()
             print(f"Error fetching or processing data: {e}")
             return []
 
-    @app.route("/") 
-    def home(): 
-        return render_template("home.html")
+    @app.route("/")
+    def home():
+        return render_template("home.html", pharmacies = fetch_pharmacy_data())
 
-    @app.route("/farmacias") 
-    def farmacias(): 
-        return fetch_pharmacy_data()
+    @app.route("/farmacias")
+    def farmacias():
+        return jsonify(pharmacies = fetch_pharmacy_data())
 
 
     @app.errorhandler(404)
@@ -185,6 +185,6 @@ def create_app():
 
     return app
 
-# if __name__ == "__main__": 
-    # app.run(debug=True) 
+# if __name__ == "__main__":
+    # app.run(debug=True)
     # app.run(host="192.168.0.207", port=5000)
