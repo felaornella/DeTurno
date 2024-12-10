@@ -102,12 +102,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script>
+    <script>
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.register('/files/service-worker.js')
+        //     .then(() => console.log('Service Worker Registered'));
+        // }
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/files/service-worker.js')
-            .then(() => console.log('Service Worker Registered'));
+            navigator.serviceWorker.getRegistrations()
+                .then(registrations => {
+                    if (registrations.length === 0) {
+                        console.log('No service workers registered.');
+                    } else {
+                        registrations.forEach(registration => {
+                            registration.unregister()
+                                .then(success => {
+                                    if (success) {
+                                        console.log('Service worker unregistered:', registration);
+                                    } else {
+                                        console.log('Failed to unregister service worker:', registration);
+                                    }
+                                });
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching service worker registrations:', error));
+        } else {
+            console.log('Service workers are not supported in this browser.');
         }
-    </script> -->
+    </script>
     <script>
         let pharmacies = [];
 
