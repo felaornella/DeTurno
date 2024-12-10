@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, send_file, url_for
+from flask import Flask, render_template, redirect, send_file, url_for, jsonify
 from math import radians, sin, cos, sqrt, atan2
 import requests
 from bs4 import BeautifulSoup
@@ -167,7 +167,7 @@ def create_app():
 
                 info_farmacias.append(data)
 
-            return info_farmacias
+            return jsonify(pharmacies = info_farmacias)
 
         except Exception as e:
             traceback.print_exc()
@@ -176,7 +176,12 @@ def create_app():
 
     @app.route("/") 
     def home(): 
-        return render_template("home.html", pharmacies = fetch_pharmacy_data())
+        return render_template("home.html")
+
+    @app.route("/farmacias") 
+    def farmacias(): 
+        return fetch_pharmacy_data()
+
 
     @app.errorhandler(404)
     def page_not_found(e):
