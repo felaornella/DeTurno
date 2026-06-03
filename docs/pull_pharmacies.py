@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -69,7 +70,35 @@ def fetch_pharmacies() -> list[dict]:
     return pharmacies
 
 
-def write_pharmacies_json(pharmacies: list[dict]) -> None:
+def pharmacies_digest(pharmacies: list[dict]) -> str:
+    canonical = json.dumps(pharmacies, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def read_existing_pharmacies() -> list[dict] | None:
+    if not OUTPUT_FILE.is_file():
+        return None
+
+    try:
+        data = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+        pharmacies = data.get("pharmacies")
+        if isinstance(pharmacies, list) and pharmacies:
+            return pharmacies
+    except (OSError, json.JSONDecodeError, TypeError):
+        pass
+
+    return None
+
+
+def write_pharmacies_json(pharmacies: list[dict]) -> bool:
+    """Write pharmacies.json only when the pharmacy list changed."""
+    new_digest = pharmacies_digest(pharmacies)
+    existing = read_existing_pharmacies()
+
+    if existing is not None and pharmacies_digest(existing) == new_digest:
+        print("Pharmacy data unchanged; skipping file write and git publish.")
+        return False
+
     payload = {
         "updatedAt": datetime.now(timezone.utc).isoformat(),
         "pharmacies": pharmacies,
@@ -79,6 +108,7 @@ def write_pharmacies_json(pharmacies: list[dict]) -> None:
         encoding="utf-8",
     )
     print(f"Wrote {len(pharmacies)} pharmacies to {OUTPUT_FILE}")
+    return True
 
 
 def run_git_publish() -> None:
@@ -107,8 +137,8 @@ def main() -> int:
 
     try:
         pharmacies = fetch_pharmacies()
-        write_pharmacies_json(pharmacies)
-        run_git_publish()
+        if write_pharmacies_json(pharmacies):
+            run_git_publish()
     except subprocess.CalledProcessError as error:
         print(f"Git command failed: {error}", file=sys.stderr)
         return 1
