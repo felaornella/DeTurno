@@ -1,6 +1,5 @@
 import { fetchPharmacyData } from './pharmacies.js';
 
-const loadingOverlay = document.getElementById('loadingOverlay');
 const errorAlert = document.getElementById('errorAlert');
 const map = L.map('map');
 
@@ -18,16 +17,9 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return R * c;
 }
 
-function hideLoading() {
-  setTimeout(() => {
-    loadingOverlay.style.display = 'none';
-  }, 1000);
-}
-
 function showError(message) {
   errorAlert.textContent = message;
   errorAlert.classList.remove('d-none');
-  hideLoading();
 }
 
 function renderPharmacyPopup(item, isNearest = false) {
@@ -133,12 +125,10 @@ function setupMapWithPharmacies(pharmacies) {
 
       const group = new L.featureGroup([nearestPharmacy.marker]);
       map.fitBounds(group.getBounds(), { padding: [150, 150], maxZoom: 15 });
-      hideLoading();
     },
     (error) => {
       console.error('Error getting location', error);
       map.setView([pharmacies[0].geo.lat, pharmacies[0].geo.long], 10);
-      hideLoading();
     },
   );
 }

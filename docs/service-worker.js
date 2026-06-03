@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deturno-v2';
+const CACHE_NAME = 'deturno-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -38,6 +38,11 @@ self.addEventListener('fetch', (event) => {
   const isSameOrigin = requestUrl.origin === self.location.origin;
 
   if (!isSameOrigin) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  if (requestUrl.pathname.endsWith('/pharmacies.json')) {
     event.respondWith(fetch(event.request));
     return;
   }
