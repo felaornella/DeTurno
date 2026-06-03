@@ -109,11 +109,22 @@
     </div>
 
     <script>
-        if ('serviceWorker' in navigator) {
+        const isLocalFile = location.protocol === 'file:';
+
+        if (isLocalFile) {
+            document.getElementById('errorAlert').innerHTML =
+                'No se puede abrir esta app directamente desde el disco. Corré un servidor local en esta carpeta, por ejemplo: <code>python3 -m http.server 8080</code> y abrí <code>http://localhost:8080</code>.';
+            document.getElementById('errorAlert').classList.remove('d-none');
+            document.getElementById('loadingOverlay').style.display = 'none';
+        } else if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./service-worker.js')
                 .then(() => console.log('Service Worker Registered'));
         }
     </script>
-    <script type="module" src="js/app.js"></script>
+    <script type="module">
+        if (location.protocol !== 'file:') {
+            import('./js/app.js');
+        }
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deturno-v1';
+const CACHE_NAME = 'deturno-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -31,6 +31,14 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') {
+    return;
+  }
+
+  const requestUrl = new URL(event.request.url);
+  const isSameOrigin = requestUrl.origin === self.location.origin;
+
+  if (!isSameOrigin) {
+    event.respondWith(fetch(event.request));
     return;
   }
 

@@ -9,7 +9,7 @@ function getEndOfDayTimestamp() {
   return end.getTime();
 }
 
-function readPharmacyCache() {
+function readPharmacyCache({ allowExpired = false } = {}) {
   try {
     const raw = localStorage.getItem(PHARMACY_CACHE_KEY);
     if (!raw) {
@@ -17,7 +17,11 @@ function readPharmacyCache() {
     }
 
     const { expiresAt, pharmacies } = JSON.parse(raw);
-    if (!Array.isArray(pharmacies) || !pharmacies.length || Date.now() > expiresAt) {
+    if (!Array.isArray(pharmacies) || !pharmacies.length) {
+      return null;
+    }
+
+    if (!allowExpired && Date.now() > expiresAt) {
       return null;
     }
 
@@ -26,6 +30,10 @@ function readPharmacyCache() {
     localStorage.removeItem(PHARMACY_CACHE_KEY);
     return null;
   }
+}
+
+function isValidPharmacyHtml(html) {
+  return html.includes('class="turnos"') || html.includes("class='turnos'");
 }
 
 function writePharmacyCache(pharmacies) {
@@ -47,40 +55,43 @@ function titleCase(str) {
   return str.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
 }
 
-async function fetchHtml(url) {
-  try {
-    const response = await fetch(url);
-    if (response.ok) {
-      return response.text();
-    }
-  } catch (_) {
-    // Direct fetch blocked by CORS on static hosts (e.g. GitHub Pages).
+function assertValidPharmacyHtml(html, source) {
+  if (!isValidPharmacyHtml(html)) {
+    throw new Error(`${source}: response is not a pharmacy page`);
   }
+  return html;
+}
 
-  const proxies = [
+async function fetchHtml(url) {
+  const attempts = [
+    async () => {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`direct: ${response.status}`);
+      return assertValidPharmacyHtml(await response.text(), 'direct');
+    },
+    async () => {
+      const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+      if (!response.ok) throw new Error(`allorigins raw: ${response.status}`);
+      return assertValidPharmacyHtml(await response.text(), 'allorigins raw');
+    },
     async () => {
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
       if (!response.ok) throw new Error(`allorigins get: ${response.status}`);
       const data = await response.json();
       if (!data.contents) throw new Error('allorigins get: empty contents');
-      return data.contents;
-    },
-    async () => {
-      const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-      if (!response.ok) throw new Error(`allorigins raw: ${response.status}`);
-      return response.text();
+      return assertValidPharmacyHtml(data.contents, 'allorigins get');
     },
     async () => {
       const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
       if (!response.ok) throw new Error(`corsproxy: ${response.status}`);
-      return response.text();
+      return assertValidPharmacyHtml(await response.text(), 'corsproxy');
     },
   ];
 
   let lastError;
-  for (const fetchViaProxy of proxies) {
+  for (const attempt of attempts) {
     try {
-      return await fetchViaProxy();
+      return await attempt();
     } catch (error) {
       lastError = error;
     }
@@ -158,6 +169,11 @@ export async function fetchPharmacyData() {
     return pharmacies;
   } catch (error) {
     console.error('Error fetching or processing data:', error);
+    const stale = readPharmacyCache({ allowExpired: true });
+    if (stale) {
+      console.warn('Using expired pharmacy cache after fetch failure');
+      return stale;
+    }
     return [];
   }
 }
