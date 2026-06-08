@@ -1,289 +1,245 @@
 {
-  "updatedAt": "2026-06-07T12:05:32.702959+00:00",
+  "updatedAt": "2026-06-08T12:05:33.653146+00:00",
   "pharmacies": [
     {
-      "nombre": "Araldi",
-      "direccion": "51 nro 451 esq. 4",
+      "nombre": "Anselmino",
+      "direccion": "71 esq 5 nro 501",
       "zona": "La Plata",
-      "telefono": "221 4212063",
+      "telefono": "4214474",
       "geo": {
-        "lat": "-34.9134505",
-        "long": "-57.9468093"
+        "lat": "-34.92829",
+        "long": "-57.92717"
       },
       "osde": {}
     },
     {
-      "nombre": "Arevalo",
-      "direccion": "7 nro 2010 e/ 73 y 74",
+      "nombre": "Avenida Olmos",
+      "direccion": "44 e/ 201 y 202",
       "zona": "La Plata",
-      "telefono": "4579005",
+      "telefono": "4963822",
       "geo": {
-        "lat": "-34.932462",
-        "long": "-57.92582"
+        "lat": "-34.99911",
+        "long": "-58.0528"
       },
       "osde": {}
     },
     {
-      "nombre": "Concistre S.C.S.",
-      "direccion": "Diag 79 esq 64 nro 202",
+      "nombre": "Baldo",
+      "direccion": "DIAG. 80 y 45 nro 788",
       "zona": "La Plata",
-      "telefono": "4243650 - 4240308",
+      "telefono": "4213607",
       "geo": {
-        "lat": "-34.91506",
-        "long": "-57.92714"
+        "lat": "-34.90718",
+        "long": "-57.94918"
       },
       "osde": {}
     },
     {
-      "nombre": "Unica",
-      "direccion": "10 e/ 520 y 521 nro 1129",
+      "nombre": "Bruno",
+      "direccion": "5 NRO 1080 ESQ. 55",
       "zona": "La Plata",
-      "telefono": "655-9771",
+      "telefono": "4210984",
       "geo": {
-        "lat": "-34.8931868",
-        "long": "-57.9856636"
+        "lat": "-34.9152908",
+        "long": "-57.9444536"
       },
       "osde": {}
     },
     {
-      "nombre": "Entre Rios S.C.S.",
-      "direccion": "7 nro 2917",
+      "nombre": "Catala",
+      "direccion": "7 esq 520bis nro 1160",
       "zona": "La Plata",
-      "telefono": "4869780",
+      "telefono": "588-5984",
       "geo": {
-        "lat": "-34.945584",
-        "long": "-57.9094641"
+        "lat": "-34.8908922",
+        "long": "-57.9819991"
       },
       "osde": {}
     },
     {
-      "nombre": "Gigli S.C.S.",
-      "direccion": "122 nro  2151 esq 76",
+      "nombre": "Garcia Barilatti",
+      "direccion": "70 nro 1686 e/ 28 y 29",
       "zona": "La Plata",
-      "telefono": "4573393",
+      "telefono": "4521399",
       "geo": {
-        "lat": "-34.92056",
-        "long": "-57.90927"
+        "lat": "-34.94973",
+        "long": "-57.95238"
       },
       "osde": {}
     },
     {
-      "nombre": "Guemes",
-      "direccion": "32 E/11 Y 12 NRO 814",
+      "nombre": "Abdala La Plata S.C.S.",
+      "direccion": "2 nro 190 1/2 e/35 y 36",
       "zona": "La Plata",
-      "telefono": "4824504",
+      "telefono": "4891773",
       "geo": {
-        "lat": "-34.90463",
-        "long": "-57.97319"
+        "lat": "-34.8989311",
+        "long": "-57.9594673"
       },
       "osde": {}
     },
     {
-      "nombre": "Lenoier",
-      "direccion": "7 e/61 y 62 nro 1441",
+      "nombre": "Grosso",
+      "direccion": "86 nro 606 esq 7",
       "zona": "La Plata",
-      "telefono": "4210344 / 4095",
+      "telefono": "4866128",
       "geo": {
-        "lat": "-34.922461",
-        "long": "-57.939752"
+        "lat": "-34.9424068",
+        "long": "-57.9131883"
       },
       "osde": {}
     },
     {
-      "nombre": "Bologna",
-      "direccion": "44 ESQ. 28 NRO 1652",
+      "nombre": "Inglesa De La Plata",
+      "direccion": "47 nro 634 e/ 7 y 8",
       "zona": "La Plata",
-      "telefono": "4797655",
+      "telefono": "4213400",
       "geo": {
-        "lat": "-34.9305446",
-        "long": "-57.9767926"
+        "lat": "-34.9138253",
+        "long": "-57.9527392"
       },
       "osde": {}
     },
     {
-      "nombre": "Ludueña",
-      "direccion": "520 esq. 151 bis",
+      "nombre": "Lozano",
+      "direccion": "13 e/33 y 34 nro 83",
       "zona": "La Plata",
-      "telefono": "2213197500",
+      "telefono": "4259991",
       "geo": {
-        "lat": "-34.9325187",
-        "long": "-58.028676"
+        "lat": "-34.9068574",
+        "long": "-57.97334"
       },
       "osde": {}
     },
     {
-      "nombre": "Ruemzalu S.C.S.",
-      "direccion": "56 nº 865",
+      "nombre": "Mancuso",
+      "direccion": "26 nro 2105 esq 75",
       "zona": "La Plata",
-      "telefono": "4244040-4244042",
+      "telefono": "4526572",
       "geo": {
-        "lat": "-34.9231225",
-        "long": "-57.9514875"
+        "lat": "-34.9513488",
+        "long": "-57.9443209"
       },
       "osde": {}
     },
     {
-      "nombre": "Giunti",
-      "direccion": "38 NRO 1251 ESQ. 20",
+      "nombre": "Marano",
+      "direccion": "49 ESQ. 28 NRO 1647",
       "zona": "La Plata",
-      "telefono": "4243481",
+      "telefono": "4517107",
       "geo": {
-        "lat": "-34.9178542",
-        "long": "-57.9753998"
+        "lat": "-34.9338017",
+        "long": "-57.9719868"
       },
       "osde": {}
     },
     {
-      "nombre": "Piñero",
-      "direccion": "32 nro 1841 e/ 131 y 132",
+      "nombre": "Farimasi (Ex Pardini)",
+      "direccion": "Diag 73 esq 29 nro 3387",
       "zona": "La Plata",
-      "telefono": "4703813",
+      "telefono": "4792290  / CELU 6780160",
       "geo": {
-        "lat": "-34.923943",
-        "long": "-57.994746"
+        "lat": "-34.92295",
+        "long": "-57.98872"
       },
       "osde": {}
     },
     {
-      "nombre": "Farmacia 44",
-      "direccion": "44 ESQ. 15",
+      "nombre": "Ravassi",
+      "direccion": "58 e/ 21 y 22  (esq. Diag 75)",
       "zona": "La Plata",
-      "telefono": "4824750",
+      "telefono": "4515074",
       "geo": {
-        "lat": "-34.91807",
-        "long": "-57.96331"
+        "lat": "-34.932763",
+        "long": "-57.9586664"
       },
       "osde": {}
     },
     {
-      "nombre": "Robles",
-      "direccion": "51 esq 20",
+      "nombre": "Troilo Scs",
+      "direccion": "48 esq 15 nro 999",
       "zona": "La Plata",
-      "telefono": "4517342",
+      "telefono": "4246572",
       "geo": {
-        "lat": "-34.9275937",
-        "long": "-57.9624832"
+        "lat": "-34.92108",
+        "long": "-57.95948"
       },
       "osde": {}
     },
     {
-      "nombre": "Garcia Buscarini",
-      "direccion": "68 esq 21 nro 1300",
+      "nombre": "Santa Lucia",
+      "direccion": "64 ESQ. 14 NRO 961",
       "zona": "La Plata",
-      "telefono": "4514120",
+      "telefono": "4519796",
       "geo": {
-        "lat": "-34.94081",
-        "long": "-57.94659"
+        "lat": "-34.93097",
+        "long": "-57.94467"
       },
       "osde": {}
     },
     {
-      "nombre": "Kmh S.C.S. (Trotta)",
-      "direccion": "17 esq 63 nro 1501",
+      "nombre": "Juan",
+      "direccion": "122 esq 90",
       "zona": "La Plata",
-      "telefono": "4510846",
+      "telefono": "4869950",
       "geo": {
-        "lat": "-34.93296",
-        "long": "-57.94841"
+        "lat": "-34.93018",
+        "long": "-57.8959"
       },
       "osde": {}
     },
     {
-      "nombre": "Santa Teresita",
-      "direccion": "38 e/ 120 y 121 nro 94",
+      "nombre": "Lazza",
+      "direccion": "142 Nro 14 ESQ 32",
       "zona": "La Plata",
-      "telefono": "4253255",
+      "telefono": "221-154981619",
       "geo": {
-        "lat": "-34.89311",
-        "long": "-57.94863"
+        "lat": "-34.9337124",
+        "long": "-58.0049355"
       },
       "osde": {}
     },
     {
-      "nombre": "Wilgenhoff",
-      "direccion": "63 ESQ. 30 NRO 1747",
-      "zona": "La Plata",
-      "telefono": "4526971",
-      "geo": {
-        "lat": "-34.94479",
-        "long": "-57.96174"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "Angel Etcheverry",
-      "direccion": "44 Nº 6140 E/ 217 y 218",
-      "zona": "La Plata",
-      "telefono": "15-5428690",
-      "geo": {
-        "lat": "-35.01398",
-        "long": "-58.06835"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "De La Calle",
-      "direccion": "80 ESQ 13 Nro 898",
-      "zona": "La Plata",
-      "telefono": "221-5038859",
-      "geo": {
-        "lat": "-34.920494",
-        "long": "-57.953568"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "Agostini",
-      "direccion": "Centenario y Diag 92",
+      "nombre": "Avellaneda",
+      "direccion": "502 esquina 10",
       "zona": "Norte",
-      "telefono": "4722573",
+      "telefono": "471-1200  /  +5492213997436",
       "geo": {
-        "lat": "-34.8661119",
-        "long": "-58.0476438"
+        "lat": "-34.87425990000001",
+        "long": "-58.004494799999975"
       },
       "osde": {}
     },
     {
-      "nombre": "Armignago",
-      "direccion": "25 e/511bis y 512bis",
+      "nombre": "Zito",
+      "direccion": "Cno Gral Belgrano e/409 y 411 nro 1850",
       "zona": "Norte",
-      "telefono": "4713476",
+      "telefono": "4871240",
       "geo": {
-        "lat": "-34.9002227",
-        "long": "-58.0104696"
+        "lat": "-34.8715262",
+        "long": "-58.0923444"
       },
       "osde": {}
     },
     {
-      "nombre": "Pasquali",
-      "direccion": "Cno. Gral. Belgrano nro 1430 e/ 416 Y 417",
+      "nombre": "Altos Del Golf",
+      "direccion": "467 Y 135",
       "zona": "Norte",
-      "telefono": "4740526",
+      "telefono": "5120013",
       "geo": {
-        "lat": "-34.8681471",
-        "long": "-58.1056717"
+        "lat": "-34.8953248",
+        "long": "-58.0662042"
       },
       "osde": {}
     },
     {
-      "nombre": "Valeria Martinez",
-      "direccion": "66 NRO 2527 E/ 145 Y 146",
+      "nombre": "Avenida 66",
+      "direccion": "66 e/140 y 141",
       "zona": "Los Hornos",
-      "telefono": "4506782",
+      "telefono": "5123114",
       "geo": {
-        "lat": "-34.9623768",
-        "long": "-57.9770408"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "Giraldez",
-      "direccion": "68 e/140 y 141",
-      "zona": "Los Hornos",
-      "telefono": "0",
-      "geo": {
-        "lat": "-34.9597044",
-        "long": "-57.9732475"
+        "lat": "-34.9593628",
+        "long": "-57.9735916"
       },
       "osde": {}
     }
