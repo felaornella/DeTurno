@@ -1,256 +1,234 @@
 {
-  "updatedAt": "2026-06-09T12:05:34.805598+00:00",
+  "updatedAt": "2026-06-10T12:05:34.802501+00:00",
   "pharmacies": [
     {
-      "nombre": "Caruso S.C.S.",
-      "direccion": "6 ESQ. 44",
+      "nombre": "Aloy S.C.S.",
+      "direccion": "43 nro 439 entre 3 y 4",
       "zona": "La Plata",
-      "telefono": "4219390",
+      "telefono": "4210926",
       "geo": {
-        "lat": "-34.9097345",
-        "long": "-57.9541789"
+        "lat": "-34.90667",
+        "long": "-57.95318"
       },
       "osde": {}
     },
     {
-      "nombre": "Crivaro",
-      "direccion": "10 nro 1502 esq 63",
+      "nombre": "Moracci S.C.S.",
+      "direccion": "28 nro 1697 e/ 66 y 67",
       "zona": "La Plata",
-      "telefono": "4573957",
+      "telefono": "4577153",
       "geo": {
-        "lat": "-34.9262363",
-        "long": "-57.9409811"
+        "lat": "-34.9464156",
+        "long": "-57.9553479"
       },
       "osde": {}
     },
     {
-      "nombre": "Del Valle",
-      "direccion": "39 esq 24 nro 1450",
+      "nombre": "Farmacia Mana Scs",
+      "direccion": "4 esq 57",
       "zona": "La Plata",
-      "telefono": "4795840",
+      "telefono": "4243929",
       "geo": {
-        "lat": "-34.922495",
-        "long": "-57.978367"
+        "lat": "-34.91539",
+        "long": "-57.94161"
       },
       "osde": {}
     },
     {
-      "nombre": "Della Casa",
-      "direccion": "18 e/37 y 38 nro 293",
+      "nombre": "Vima Profesional S.R.L.",
+      "direccion": "120 esq 80",
       "zona": "La Plata",
-      "telefono": "4229440",
+      "telefono": "4526644",
       "geo": {
-        "lat": "-34.91577",
-        "long": "-57.9737"
+        "lat": "-34.92576",
+        "long": "-57.90727"
       },
       "osde": {}
     },
     {
-      "nombre": "Quantin",
-      "direccion": "27 nro 739 e/46 y 47",
+      "nombre": "Belardinelli",
+      "direccion": "7 e/609 y 610",
       "zona": "La Plata",
-      "telefono": "4796263",
+      "telefono": "4865804",
       "geo": {
-        "lat": "-34.93167",
-        "long": "-57.97301"
+        "lat": "-34.95742",
+        "long": "-57.89379"
       },
       "osde": {}
     },
     {
-      "nombre": "Landivar",
-      "direccion": "44 e/147 y 148",
+      "nombre": "Ciudad De La Plata S.C.S.",
+      "direccion": "66 esq. 6 nro 548",
       "zona": "La Plata",
-      "telefono": "4708590",
+      "telefono": "4271120",
       "geo": {
-        "lat": "-34.9476783",
-        "long": "-57.9957362"
+        "lat": "-34.92488",
+        "long": "-57.93334"
       },
       "osde": {}
     },
     {
-      "nombre": "Guillermo Vega",
-      "direccion": "1 esq 65 nro 1599",
+      "nombre": "Gambier S.C.S.",
+      "direccion": "49 nro 1892 e/ 132 y 133",
       "zona": "La Plata",
-      "telefono": "4213904-4836672",
+      "telefono": "4791352",
       "geo": {
-        "lat": "-34.91951",
-        "long": "-57.93002"
+        "lat": "-34.93872",
+        "long": "-57.97763"
       },
       "osde": {}
     },
     {
-      "nombre": "Pizzano",
-      "direccion": "27 e/ 60 y 61 Nº 1351",
+      "nombre": "Ruiz Pedersen",
+      "direccion": "Diag 73 nro 2186 e/ 46 y 47",
       "zona": "La Plata",
-      "telefono": "4570295",
+      "telefono": "221-4207565",
       "geo": {
-        "lat": "-34.9396824",
-        "long": "-57.9620722"
+        "lat": "-34.92189",
+        "long": "-57.96263"
       },
       "osde": {}
     },
     {
-      "nombre": "La Estrella",
-      "direccion": "12 esq. 48 nro 848",
+      "nombre": "La Granja",
+      "direccion": "520 esq 141",
       "zona": "La Plata",
-      "telefono": "4218244",
+      "telefono": "4706452",
       "geo": {
-        "lat": "-34.91833",
-        "long": "-57.9561"
+        "lat": "-34.92286",
+        "long": "-58.01787"
       },
       "osde": {}
     },
     {
-      "nombre": "French De La Plata S.C.S.",
-      "direccion": "122 E/ 35 Y 36 NRO 181",
+      "nombre": "Soto",
+      "direccion": "56 esq 10",
       "zona": "La Plata",
-      "telefono": "4823180",
+      "telefono": "4233037",
       "geo": {
-        "lat": "-34.8894251",
-        "long": "-57.9509733"
+        "lat": "-34.9220684",
+        "long": "-57.9499613"
       },
       "osde": {}
     },
     {
-      "nombre": "Pampin S.C.S.",
-      "direccion": "116 ESQ. 522",
+      "nombre": "Lujan S.C.S.",
+      "direccion": "21 NRO 151 ESQ. 35",
       "zona": "La Plata",
-      "telefono": "4234005",
+      "telefono": "4277377/156547210",
       "geo": {
-        "lat": "-34.8846876",
-        "long": "-57.97229"
+        "lat": "-34.916399",
+        "long": "-57.97991"
       },
       "osde": {}
     },
     {
-      "nombre": "Tirado",
-      "direccion": "Cno. MAGDALENA esq 600",
+      "nombre": "Botica Del Rossi",
+      "direccion": "116 esq 37 nro 251",
       "zona": "La Plata",
-      "telefono": "4865533",
+      "telefono": "4218776",
       "geo": {
-        "lat": "-34.93367",
-        "long": "-57.88312"
+        "lat": "-34.8964862",
+        "long": "-57.9561066"
       },
       "osde": {}
     },
     {
-      "nombre": "Navickas",
-      "direccion": "7 nro 307 e/ 528 y 529",
+      "nombre": "Rosa Mistica",
+      "direccion": "64 esq 19 nro 1199",
       "zona": "La Plata",
-      "telefono": "4228439",
+      "telefono": "4514212",
       "geo": {
-        "lat": "-34.89759",
-        "long": "-57.97254"
+        "lat": "-34.93544",
+        "long": "-57.94932"
       },
       "osde": {}
     },
     {
-      "nombre": "Vega",
-      "direccion": "7 e/76 y 77 nro 2169",
+      "nombre": "San Luis",
+      "direccion": "1 esq 70 nro 1849",
       "zona": "La Plata",
-      "telefono": "4521729",
+      "telefono": "4215407",
       "geo": {
-        "lat": "-34.9343472",
-        "long": "-57.9237191"
+        "lat": "-34.92402",
+        "long": "-57.9246"
       },
       "osde": {}
     },
     {
-      "nombre": "Suame (Nueva)",
-      "direccion": "41 Y 133",
+      "nombre": "Tempesta",
+      "direccion": "80 nro 731 e/ 9 y 10",
       "zona": "La Plata",
-      "telefono": "221-6968888",
+      "telefono": "4536416",
       "geo": {
-        "lat": "-34.93109",
-        "long": "-57.98979"
+        "lat": "-34.9396174",
+        "long": "-57.9224377"
       },
       "osde": {}
     },
     {
-      "nombre": "Contreras",
-      "direccion": "32 E/ 164 y 165",
+      "nombre": "Manes",
+      "direccion": "49 nro 636 e/7 y 8",
       "zona": "La Plata",
-      "telefono": "458-2278",
+      "telefono": "4220550",
       "geo": {
-        "lat": "-34.95492",
-        "long": "-58.02884"
+        "lat": "-34.9150888",
+        "long": "-57.9510165"
       },
       "osde": {}
     },
     {
-      "nombre": "Paujo S.C.S.",
-      "direccion": "520 E/182 Y 182BIS",
+      "nombre": "Orsetti",
+      "direccion": "44 ESQ 160",
       "zona": "La Plata",
-      "telefono": "4914626",
+      "telefono": "2213147586",
       "geo": {
-        "lat": "-34.9615958",
-        "long": "-58.0608538"
+        "lat": "-34.96076",
+        "long": "-58.00991"
       },
       "osde": {}
     },
     {
-      "nombre": "Vazquez",
-      "direccion": "19 esq 75 nro 2099",
-      "zona": "La Plata",
-      "telefono": "4177571",
-      "geo": {
-        "lat": "-34.94471",
-        "long": "-57.93738"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "Alemania Lp S.C.S.",
-      "direccion": "122 Nro 2343 1/2",
-      "zona": "La Plata",
-      "telefono": "2286888",
-      "geo": {
-        "lat": "-34.92358",
-        "long": "-57.90507"
-      },
-      "osde": {}
-    },
-    {
-      "nombre": "Centenario",
-      "direccion": "Cno centenario y 54",
+      "nombre": "Martin",
+      "direccion": "12 NRO 1615",
       "zona": "Norte",
-      "telefono": "4872370",
+      "telefono": "4732662",
       "geo": {
-        "lat": "-34.8806881",
-        "long": "-58.0857311"
+        "lat": "-34.8542537",
+        "long": "-58.0816061"
       },
       "osde": {}
     },
     {
-      "nombre": "City Bell",
-      "direccion": "Cantilo e/ 14 y 14A  Nro 456",
+      "nombre": "Melgar",
+      "direccion": "25 e/503 y 504 nro 2863",
       "zona": "Norte",
-      "telefono": "4722299",
+      "telefono": "4846618",
       "geo": {
-        "lat": "-34.8662163",
-        "long": "-58.0424482"
+        "lat": "-34.8929285",
+        "long": "-58.02016850000001"
       },
       "osde": {}
     },
     {
-      "nombre": "Mouzo",
-      "direccion": "14 ESQ. 502",
+      "nombre": "Nueva Cantilo S.C.S.",
+      "direccion": "473 NRO 925",
       "zona": "Norte",
-      "telefono": "4840179",
+      "telefono": "4801918",
       "geo": {
-        "lat": "-34.8819608",
-        "long": "-58.0115643"
+        "lat": "-34.874415",
+        "long": "-58.04845"
       },
       "osde": {}
     },
     {
-      "nombre": "Fratelli S.C.S.",
-      "direccion": "62 esq 141 nro 1451",
+      "nombre": "Ramos",
+      "direccion": "62 N°1910 e/ 133 y 134",
       "zona": "Los Hornos",
-      "telefono": "4505135",
+      "telefono": "4500412",
       "geo": {
-        "lat": "-34.9549588",
-        "long": "-57.9772153"
+        "lat": "-34.9477171",
+        "long": "-57.9690659"
       },
       "osde": {}
     }
