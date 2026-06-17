@@ -1,223 +1,245 @@
 {
-  "updatedAt": "2026-06-16T12:05:36.218177+00:00",
+  "updatedAt": "2026-06-17T12:05:37.468951+00:00",
   "pharmacies": [
     {
-      "nombre": "Bermudez",
-      "direccion": "28 esq 38",
+      "nombre": "Fernandez Ibarra",
+      "direccion": "520 e/209 y 210",
       "zona": "La Plata",
-      "telefono": "4791563",
+      "telefono": "4916023",
       "geo": {
-        "lat": "-34.9254915",
-        "long": "-57.9836225"
+        "lat": "-34.98673",
+        "long": "-58.08866"
       },
       "osde": {}
     },
     {
-      "nombre": "Aloy S.C.S.",
-      "direccion": "43 nro 439 entre 3 y 4",
+      "nombre": "Aleksi",
+      "direccion": "7 e/ 80 y 81 bis nro 2364",
       "zona": "La Plata",
-      "telefono": "4210926",
+      "telefono": "221 156067355",
       "geo": {
-        "lat": "-34.90667",
-        "long": "-57.95318"
+        "lat": "-34.93731",
+        "long": "-57.91915"
       },
       "osde": {}
     },
     {
-      "nombre": "Autino",
-      "direccion": "56 ESQ. 15",
+      "nombre": "Torge",
+      "direccion": "Diag. 80 e/39 y 40",
       "zona": "La Plata",
-      "telefono": "4210230",
+      "telefono": "5125948",
       "geo": {
-        "lat": "-34.9262384",
-        "long": "-57.954871"
+        "lat": "-34.89673",
+        "long": "-57.94945"
       },
       "osde": {}
     },
     {
-      "nombre": "Garcia Barilatti",
-      "direccion": "70 nro 1686 e/ 28 y 29",
+      "nombre": "Farmacia 50 Y 16 Scs",
+      "direccion": "50 Nro 1051 Esq. 16",
       "zona": "La Plata",
-      "telefono": "4521399",
+      "telefono": "451-1626",
       "geo": {
-        "lat": "-34.94973",
-        "long": "-57.95238"
+        "lat": "-34.9232876",
+        "long": "-57.959125"
       },
       "osde": {}
     },
     {
-      "nombre": "Dalton",
-      "direccion": "1 esq 61 nro 1400",
+      "nombre": "Cantani",
+      "direccion": "54 e/4 y 5 nro 478",
       "zona": "La Plata",
-      "telefono": "4211495",
+      "telefono": "4212605",
       "geo": {
-        "lat": "-34.9116879",
-        "long": "-57.9402754"
+        "lat": "-34.9142354",
+        "long": "-57.9441627"
       },
       "osde": {}
     },
     {
-      "nombre": "Del Bono",
-      "direccion": "530 esq 115bis nro 457",
+      "nombre": "Ciudad De La Plata S.C.S.",
+      "direccion": "66 esq. 6 nro 548",
       "zona": "La Plata",
-      "telefono": "4215969",
+      "telefono": "4271120",
       "geo": {
-        "lat": "-34.8904189",
-        "long": "-57.9654072"
+        "lat": "-34.92488",
+        "long": "-57.93334"
       },
       "osde": {}
     },
     {
-      "nombre": "Iraola",
-      "direccion": "44 nro 4576 e/186 y 187",
+      "nombre": "Del Aguila S.C.S.",
+      "direccion": "45 esq 9 nro 700",
       "zona": "La Plata",
-      "telefono": "4963499",
+      "telefono": "4210892",
       "geo": {
-        "lat": "-34.9560799",
-        "long": "-58.0049794"
+        "lat": "-34.91347",
+        "long": "-57.95597"
       },
       "osde": {}
     },
     {
-      "nombre": "Oji",
-      "direccion": "62 E/ 11 Y 12",
+      "nombre": "Gardinali",
+      "direccion": "Diag 73 e/ 116 y 117 nro 315",
       "zona": "La Plata",
-      "telefono": "02214534114",
+      "telefono": "4240730",
       "geo": {
-        "lat": "-34.92708",
-        "long": "-57.94403"
+        "lat": "-34.9201237",
+        "long": "-57.9241166"
       },
       "osde": {}
     },
     {
-      "nombre": "Del Sur (Ex Lavie)",
-      "direccion": "13 esq 77 nro 2198",
+      "nombre": "La Loma S.C.S.",
+      "direccion": "21 nro 509 e/ 42 y 43",
       "zona": "La Plata",
-      "telefono": "4575025",
+      "telefono": "4211725/4276980",
       "geo": {
-        "lat": "-34.9223011",
-        "long": "-57.95326990000001"
+        "lat": "-34.92232",
+        "long": "-57.97186"
       },
       "osde": {}
     },
     {
-      "nombre": "Lozano",
-      "direccion": "13 e/33 y 34 nro 83",
+      "nombre": "Entio",
+      "direccion": "72 ESQ. 18",
       "zona": "La Plata",
-      "telefono": "4259991",
+      "telefono": "4524331",
       "geo": {
-        "lat": "-34.9068574",
-        "long": "-57.97334"
+        "lat": "-34.94187",
+        "long": "-57.93864"
       },
       "osde": {}
     },
     {
-      "nombre": "Malvaso",
-      "direccion": "120 e/72 y 73 nro 1980",
+      "nombre": "Bologna",
+      "direccion": "44 ESQ. 28 NRO 1652",
       "zona": "La Plata",
-      "telefono": "4526946",
+      "telefono": "4797655",
       "geo": {
-        "lat": "-34.8899246",
-        "long": "-57.9544361"
+        "lat": "-34.9305446",
+        "long": "-57.9767926"
       },
       "osde": {}
     },
     {
-      "nombre": "Marano",
-      "direccion": "49 ESQ. 28 NRO 1647",
+      "nombre": "Pesenti",
+      "direccion": "13 e/ 525 y 526 nro 101",
       "zona": "La Plata",
-      "telefono": "4517107",
+      "telefono": "4252456    cel 2216816382",
       "geo": {
-        "lat": "-34.9338017",
-        "long": "-57.9719868"
+        "lat": "-34.90087",
+        "long": "-57.98303"
       },
       "osde": {}
     },
     {
-      "nombre": "Pasciuto",
-      "direccion": "7 ESQ. 67 NRO 1701",
+      "nombre": "Farmacia 44",
+      "direccion": "44 ESQ. 15",
       "zona": "La Plata",
-      "telefono": "4242442",
+      "telefono": "4824750",
       "geo": {
-        "lat": "-34.926911",
-        "long": "-57.9336352"
+        "lat": "-34.91807",
+        "long": "-57.96331"
       },
       "osde": {}
     },
     {
-      "nombre": "Select",
-      "direccion": "41 nro 1151 esq 18",
+      "nombre": "Paladino",
+      "direccion": "29 ESQ. 55",
       "zona": "La Plata",
-      "telefono": "4213683",
+      "telefono": "4526254",
       "geo": {
-        "lat": "-34.918436",
-        "long": "-57.9701091"
+        "lat": "-34.93787",
+        "long": "-57.96918"
       },
       "osde": {}
     },
     {
-      "nombre": "Urdangaray S.C.S.",
-      "direccion": "526 NRO 3304",
+      "nombre": "Tolosa S.C.S.",
+      "direccion": "528 bis nro 861 e/ 3 y 4",
       "zona": "La Plata",
-      "telefono": "4708439 - 4708074",
+      "telefono": "4821311",
       "geo": {
-        "lat": "-34.9153747",
-        "long": "-57.9973411"
+        "lat": "-34.8941713",
+        "long": "-57.9697802"
       },
       "osde": {}
     },
     {
-      "nombre": "Lazza",
-      "direccion": "142 Nro 14 ESQ 32",
+      "nombre": "Valinoti",
+      "direccion": "56 ESQ 19 NRO 1199",
       "zona": "La Plata",
-      "telefono": "221-154981619",
+      "telefono": "4533025",
       "geo": {
-        "lat": "-34.9337124",
-        "long": "-58.0049355"
+        "lat": "-34.92892",
+        "long": "-57.95795"
       },
       "osde": {}
     },
     {
-      "nombre": "Arakaki",
-      "direccion": "467 esquina 19",
+      "nombre": "Sarti",
+      "direccion": "38 nro 751 esq 10",
+      "zona": "La Plata",
+      "telefono": "4823296",
+      "geo": {
+        "lat": "-34.9084038",
+        "long": "-57.9653988"
+      },
+      "osde": {}
+    },
+    {
+      "nombre": "Gonzalez",
+      "direccion": "122 e/62 Y 63",
+      "zona": "La Plata",
+      "telefono": "4248809",
+      "geo": {
+        "lat": "-34.90881",
+        "long": "-57.92458"
+      },
+      "osde": {}
+    },
+    {
+      "nombre": "Minghinelli",
+      "direccion": "467 nro 951 e/ 15 A y 17",
       "zona": "Norte",
-      "telefono": "4724327",
+      "telefono": "4801712",
       "geo": {
-        "lat": "-34.876043",
-        "long": "-58.054072"
+        "lat": "-34.8740661",
+        "long": "-58.0610257"
       },
       "osde": {}
     },
     {
-      "nombre": "Garcia De Gonnet",
-      "direccion": "Camino Centenario e/ 503 y 504",
+      "nombre": "Ronconi",
+      "direccion": "508 e/ 18 y 19 nro 2379",
       "zona": "Norte",
-      "telefono": "4710147",
+      "telefono": "4718081",
       "geo": {
-        "lat": "-34.88193",
-        "long": "-58.00788"
+        "lat": "-34.8943769",
+        "long": "-58.011456599999974"
       },
       "osde": {}
     },
     {
-      "nombre": "Garay",
-      "direccion": "Calle 450 Nº 1691 (esq Cno. Gral. Belgrano)",
+      "nombre": "Arana Scs",
+      "direccion": "Cno Gral Belgrano y Arana",
       "zona": "Norte",
-      "telefono": "4801691",
+      "telefono": "4732010",
       "geo": {
-        "lat": "-34.8749247",
-        "long": "-58.0774371"
+        "lat": "-34.8685625",
+        "long": "-58.1006195"
       },
       "osde": {}
     },
     {
-      "nombre": "Valeria Martinez",
-      "direccion": "66 NRO 2527 E/ 145 Y 146",
+      "nombre": "Italiana De Los Hornos",
+      "direccion": "137 nro 1567 1/2 e/64 y 65",
       "zona": "Los Hornos",
-      "telefono": "4506782",
+      "telefono": "4504256",
       "geo": {
-        "lat": "-34.9623768",
-        "long": "-57.9770408"
+        "lat": "-34.9532273",
+        "long": "-57.9729239"
       },
       "osde": {}
     }
