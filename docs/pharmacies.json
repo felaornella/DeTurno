@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-13T12:05:35.810290+00:00",
+  "updatedAt": "2026-07-13T17:05:34.573963+00:00",
   "pharmacies": [
     {
       "nombre": "Americana",
@@ -135,7 +135,7 @@
     },
     {
       "nombre": "Pinha S.C.S.",
-      "direccion": "47 nro 1347",
+      "direccion": "47 Y 22 Nro 1347",
       "zona": "La Plata",
       "telefono": "4795952",
       "geo": {
