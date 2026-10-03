@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T12:05:30.520883+00:00",
+  "updatedAt": "2026-10-03T15:05:32.843342+00:00",
   "pharmacies": [
     {
       "nombre": "Spicoli",
@@ -80,9 +80,9 @@
     },
     {
       "nombre": "Bentaberry",
-      "direccion": "22 e/76 y 77 nro 2169",
+      "direccion": "72 E/ 24 Y 25",
       "zona": "La Plata",
-      "telefono": "4515282",
+      "telefono": "221 2371059",
       "geo": {
         "lat": "-34.94841",
         "long": "-57.93912"
