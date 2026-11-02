@@ -1,17 +1,6 @@
 {
-  "updatedAt": "2026-11-02T12:05:32.451312+00:00",
+  "updatedAt": "2026-11-02T16:05:33.892224+00:00",
   "pharmacies": [
-    {
-      "nombre": "San Lorenzo",
-      "direccion": "13 nro 1997 esq 73",
-      "zona": "La Plata",
-      "telefono": "453-3358",
-      "geo": {
-        "lat": "-34.93779",
-        "long": "-57.93289"
-      },
-      "osde": {}
-    },
     {
       "nombre": "Brunetti",
       "direccion": "50 esq 31 nro 1811 1/2",
